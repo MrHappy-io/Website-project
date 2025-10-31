@@ -1,0 +1,573 @@
+html {
+  scroll-behavior: smooth;
+}
+
+/* =====================================================
+   RESET & GLOBAL STYLES
+===================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(211, 210, 210);
+    min-height: 90vh;
+}
+
+/* =====================================================
+   BACKGROUND IMAGE & EFFECT
+===================================================== */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("image/background.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: blur(6px) brightness(0.45);
+    transform: scale(1.03);
+    z-index: -1;
+}
+
+/* =====================================================
+   HEADER & NAVIGATION
+===================================================== */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+/* LOGO */
+.logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* NAVIGATION MENU */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* =====================================================
+   HERO SECTION
+===================================================== */
+.hero {
+    position: relative;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* HERO CONTENT (above the moving images) */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 40px;
+    max-width: 1000px;
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-description {
+    margin-top: 15px;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-content h1 span {
+    color: #ffdc73;
+}
+
+/* HERO BUTTON */
+.hero .btn {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 10px 20px;
+    background: #ffdc73;
+    color: black;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.hero .btn:hover {
+    background: white;
+}
+
+/* MOVING IMAGE STRIP — now sits inside hero, behind content */
+.moving-images {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    z-index: 1;
+    /* below text */
+    opacity: 0.9;
+}
+
+/* IMAGE TRACK */
+.image-track {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    animation: scroll-loop 45s linear infinite;
+}
+
+/* INDIVIDUAL IMAGES */
+.image-track img {
+    width: 420px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    filter: brightness(0.5);
+    transition: transform 0.6s ease, filter 0.6s ease, width 0.6s ease;
+}
+
+.image-track img:hover {
+    transform: scale(1.05);
+    filter: brightness(0.8);
+}
+
+/* SCROLL LOOP ANIMATION */
+@keyframes scroll-loop {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* ZOOM-IN CENTER ANIMATION */
+@keyframes zoom-center {
+
+    0%,
+    100% {
+        transform: scale(1);
+        filter: brightness(0.5);
+    }
+
+    45%,
+    55% {
+        transform: scale(1.25);
+        filter: brightness(0.9);
+    }
+}
+
+/* TIMING PER IMAGE */
+.image-track img:nth-child(1) {
+    animation: zoom-center 12s ease-in-out infinite;
+    animation-delay: 0s;
+}
+
+.image-track img:nth-child(2) {
+    animation: zoom-center 12s ease-in-out infinite;
+    animation-delay: 2.4s;
+}
+
+.image-track img:nth-child(3) {
+    animation: zoom-center 12s ease-in-out infinite;
+    animation-delay: 4.8s;
+}
+
+.image-track img:nth-child(4) {
+    animation: zoom-center 12s ease-in-out infinite;
+    animation-delay: 7.2s;
+}
+
+.image-track img:nth-child(5) {
+    animation: zoom-center 12s ease-in-out infinite;
+    animation-delay: 9.6s;
+}
+
+/* =====================================================
+   MAIN CONTENT SECTIONS
+===================================================== */
+main {
+    padding-top: 100px;
+}
+
+/* ABOUT */
+.about {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 80px 20px;
+    text-align: center;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+}
+
+/* Heading */
+.about h2 {
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Paragraph */
+.about p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Card Container */
+.about-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Individual Card */
+.about-card {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
+    padding: 25px;
+    width: 320px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Card Hover Effect */
+.about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Headings */
+.about-card h3 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    color: #003366;
+    font-weight: 600;
+}
+
+/* Card Text */
+.about-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   PROGRAMS SECTION
+===================================================== */
+.programs {
+    text-align: center;
+    padding: 80px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+    max-width: 1100px;
+    margin: 60px auto;
+    color: rgb(255, 255, 255);
+}
+
+/* SECTION TITLE */
+.programs h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+/* INTRO TEXT */
+.programs .program-intro {
+    font-size: 1.1em;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+/* PROGRAM GRID */
+.program-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+/* PROGRAM CARD */
+.program-card {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    padding: 25px;
+    width: 280px;
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* CARD HOVER EFFECT */
+.program-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* PROGRAM TITLE */
+.program-card h3 {
+    color: #ffdc73;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+/* PROGRAM DESCRIPTION */
+.program-card p {
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+/* =====================================================
+   ANNOUNCEMENTS SECTION
+===================================================== */
+.announcements {
+  text-align: center;
+  padding: 80px 20px;
+  margin: 60px auto;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  max-width: 1100px;
+  color: rgb(255, 255, 255);
+}
+
+/* SECTION TITLE */
+.announcements h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+/* ANNOUNCEMENT LIST CONTAINER */
+.announcement-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+/* ANNOUNCEMENT CARD */
+.announcement-card {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  padding: 25px;
+  width: 320px;
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* CARD HOVER EFFECT */
+.announcement-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* CARD TITLE */
+.announcement-card h3 {
+  color: #ffdc73;
+  font-size: 1.3em;
+  margin-bottom: 10px;
+}
+
+/* DATE STYLE */
+.announcement-card .date {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 0.9em;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* ANNOUNCEMENT TABLE */
+.announcement-card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.announcement-card th,
+.announcement-card td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.announcement-card th {
+  background: rgba(255, 220, 115, 0.3);
+  color: black;
+  font-weight: bold;
+}
+
+.announcement-card tr:last-child td {
+  border-bottom: none;
+}
+
+
+
+/* CONTACT */
+.contact {
+    text-align: center;
+    padding: 80px 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    color: white;
+}
+
+.contact-info p {
+    margin: 10px 0;
+}
+
+
+
+
+@media (max-width: 768px) {
+    /* =====================================================
+     MOBILE & TABLET STYLES
+    ===================================================== */
+
+    /* --- HEADER & NAV --- */
+    header {
+        flex-direction: column;
+        padding: 10px 20px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px; /* Adds a little space when items wrap */
+    }
+
+    /* --- MAIN PADDING --- */
+    main {
+        /* Account for the taller, stacked header */
+        padding-top: 150px; 
+    }
+
+    /* --- HERO SECTION --- */
+    .hero-content {
+        width: 95%;         /* Allow content to fill the screen */
+        padding: 25px;      /* Reduce padding from 40px */
+    }
+
+    .hero-content h1 {
+        font-size: 1.8em;   /* Make heading slightly smaller */
+    }
+    .hero-description {
+        font-size: 1em;     /* Make description slightly smaller */
+    }
+
+    /* --- MOVING IMAGES --- */
+    .moving-images {
+        height: 200px;    /* Make the whole strip smaller */
+        bottom: 10px;
+    }
+
+    .image-track img {
+        width: 280px;     /* Make images smaller */
+        height: 160px;
+        border-radius: 12px;
+    }
+
+    .image-track {
+        gap: 20px;        /* Reduce the gap between images */
+    }
+
+
+    /* --- MAIN CONTENT SECTIONS --- */
+    .about,
+    .programs,
+    .announcements,
+    .contact {
+        /* Reduce top/bottom padding for mobile */
+        padding: 40px 20px;
+        margin: 30px auto; /* Reduce top/bottom margin */
+    }
+
+    /* --- CARD LAYOUTS --- */
+    .about-boxes,
+    .program-grid,
+    .announcement-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Make all cards use percentage width instead of fixed pixels */
+    .about-card,
+    .program-card,
+    .announcement-card {
+        width: 90%; /* This is the key fix! */
+        max-width: 400px; /* Good practice to prevent them getting too wide */
+    }
+    
+    /* --- TABLE FIX --- */
+    .announcement-card table {
+        /* This makes the table scroll horizontally */
+        /* if it's too wide, instead of breaking the layout */
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
