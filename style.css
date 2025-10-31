@@ -1,0 +1,412 @@
+html {
+  scroll-behavior: smooth;
+}
+
+/* =====================================================
+   RESET & GLOBAL STYLES
+===================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: rgb(211, 210, 210);
+  min-height: 90vh;
+  color: white;
+}
+section {
+  scroll-margin-top: 100px; 
+}
+
+/* =====================================================
+   BACKGROUND IMAGE & EFFECT
+===================================================== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("image/background.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(6px) brightness(0.45);
+  transform: scale(1.03);
+  z-index: -1;
+}
+
+/* =====================================================
+   HEADER & NAVIGATION
+===================================================== */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 15px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* LOGO */
+.logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* NAVIGATION MENU */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: 0.3s ease;
+  background: rgba(0, 0, 0, 0.2); 
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+
+/* =====================================================
+   MAIN WRAPPER TO AVOID NAV OVERLAP
+===================================================== */
+main {
+  padding-top: 110px; 
+}
+
+/* =====================================================
+   HERO SECTION
+===================================================== */
+.hero {
+  position: relative;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding-top: 100px;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 40px;
+  max-width: 1000px;
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-description {
+  margin-top: 15px;
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-content h1 span {
+  color: #ffdc73;
+}
+
+/* HERO BUTTON */
+.hero .btn {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 10px 20px;
+  background: #ffdc73;
+  color: black;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.hero .btn:hover {
+  background: white;
+}
+
+/* =====================================================
+   MOVING IMAGE STRIP
+===================================================== */
+.moving-images {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+.image-track {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  animation: scroll-loop 45s linear infinite;
+}
+
+.image-track img {
+  width: 420px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  filter: brightness(0.5);
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.image-track img:hover {
+  transform: scale(1.05);
+  filter: brightness(0.8);
+}
+
+@keyframes scroll-loop {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* =====================================================
+   MAIN CONTENT SECTIONS
+===================================================== */
+.about,
+.programs,
+.jobs,
+.announcements,
+.contact {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 80px 20px;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+/* =====================================================
+   ABOUT SECTION
+===================================================== */
+.about h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.about-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.about-card {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  padding: 25px;
+  width: 320px;
+  transition: transform 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+}
+
+/* =====================================================
+   PROGRAMS
+===================================================== */
+.programs h2,
+.jobs h2,
+.announcements h2 {
+  font-size: 2em;
+  color: #ffdc73;
+  margin-bottom: 20px;
+}
+
+.program-grid,
+.job-grid,
+.announcement-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.program-card,
+.job-card,
+.announcement-card {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 25px;
+  width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.program-card:hover,
+.job-card:hover,
+.announcement-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* =====================================================
+   ANNOUNCEMENTS TABLE
+===================================================== */
+.announcement-card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.announcement-card th,
+.announcement-card td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.announcement-card th {
+  background: rgba(255, 220, 115, 0.3);
+  color: black;
+  font-weight: bold;
+}
+
+/* =====================================================
+   CONTACT SECTION
+===================================================== */
+.contact {
+  color: white;
+}
+
+.contact-info p {
+  margin: 10px 0;
+}
+
+/* =====================================================
+   RESPONSIVE STYLES
+===================================================== */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 12px 18px;
+    gap: 12px;
+    text-align: center;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  nav a {
+    font-size: 0.95em;
+    padding: 8px 14px;
+    border-radius: 6px;
+  }
+
+  main {
+    padding-top: 160px; 
+  }
+
+  .hero-content {
+    width: 90%;
+    padding: 25px;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8em;
+  }
+
+  .hero-description {
+    font-size: 1em;
+  }
+
+  .moving-images {
+    height: 180px;
+  }
+
+  .image-track img {
+    width: 280px;
+    height: 160px;
+  }
+
+  .about,
+  .programs,
+  .jobs,
+  .announcements,
+  .contact {
+    padding: 50px 20px;
+    margin: 40px auto;
+  }
+
+  .about-boxes,
+  .program-grid,
+  .job-grid,
+  .announcement-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-card,
+  .program-card,
+  .job-card,
+  .announcement-card {
+    width: 90%;
+    max-width: 400px;
+  }
+
+  .announcement-card table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
